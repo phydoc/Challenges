@@ -4,8 +4,10 @@ const overTime = (arr) => {
 	if (ew <= 17) {
 		let timeWorked = ew - sw;
 		payedAmount += timeWorked * hr;
-	}
-	if (ew > 17) {
+	} else if (ew > 17 && sw > 17) {
+		let normalTime = ew - sw;
+		payedAmount += (normalTime * hr) * ot;
+	} else if (ew > 17 && sw < 17) {
 		let normalTime = 17 - sw; 
 		payedAmount += normalTime * hr;
 		let overWorkedTime =  ew - 17;
@@ -15,8 +17,6 @@ const overTime = (arr) => {
 }
 
 
-console.log(overTime([9, 17, 30, 1.5])) // "$240.00"
-console.log(overTime([16, 18, 30, 1.8])) //  "$84.00"
-console.log(overTime([13.25, 15, 30, 1.5])) // "$52.50"
+console.log(overTime([18, 20, 32.5, 2])) //  "$84.00"
 
 // https://edabit.com/challenge/kYwxQo9tqLpFYTMY6
